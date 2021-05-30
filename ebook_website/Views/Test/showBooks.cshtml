@@ -1,0 +1,56 @@
+﻿@model List<ebook_website.Models.Livre>
+
+@{
+    ViewBag.Title = "showBooks";
+    Layout = "~/Views/Shared/_MyDefaultPage.cshtml";
+}
+<style>
+    #btnRetour {
+        margin-top: -20px;
+        margin-bottom: 10px;
+        float: initial;
+        border :1px solid gray;
+    }
+</style>
+<br />
+<br />
+@Html.ActionLink("Voir les catégories", "afterLogin", "Test", new { @class = "btn bg-light", @id = "btnRetour" })
+<fieldset style="box-shadow: 2px 2px 5px gray ; border :1px solid gray;padding : 40px 50px;">
+    @if (Session["nomCat"] != null)
+    {
+        <br /><legend style="font-size:30px;margin-top:-30px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Catégorie : @Session["nomCat"] </legend>
+
+    }
+    else
+    {
+        <legend style="font-size:30px;margin-top:-30px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Tous :</legend>
+    }
+    <nav align="center" class="navbar navbar-light" style="margin-left:-20px; ">
+        <div class="container-fluid">
+            <form class="d-flex">
+                <input class="form-control me-2 " type="search" placeholder="Exemple (Programmation, ... )" aria-label="Search" style="border-color: black;width:250px">
+                <button class="btn d-flex justify-content-center" style="background-color:gold ; color:black;border:1px solid black" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="row row-cols-1 row-cols-md-3 g-4 col-md-10 m-auto" style="">
+        @foreach (var u in Model)
+        {
+            <div class="col" style="">
+
+                <div class="card" style="box-shadow:2px 2px 6px gray">
+                    <h5 align="center" class="card-title" style="font-weight:600; margin:10px 20px">@u.Titre</h5>
+                    <img src="@u.Image" class="card-img-top" width="500"height="200">
+                    <h6 align="center" class="card-title" style="font-weight:600; margin:10px 20px">@u.Auteur</h6>
+                    <div class="card-body">
+                        @Html.ActionLink("Voir les détails", "pageLecture", new { id = u.ID_Livre }, new { @class = "btn btn-secondary" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</fieldset>
+
+
+<br />
+

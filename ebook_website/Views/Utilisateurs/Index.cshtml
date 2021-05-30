@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ebook_website.Models.Utilisateur>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h3 style="text-align:center; font-weight:bold">Liste des utilisateurs : </h3>
+<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+    <div class="input-group">
+        @using (Html.BeginForm("Index", "Utilisateurs", FormMethod.Get))
+        {
+            <input class="form-control" type="text" name="SearchName" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+            <div class="input-group-append">
+                <button class="btn btn-primary" name="SearchName" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        }
+
+    </div>
+</form>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { email = item.Email }) |
+                @Html.ActionLink("Details", "Details", new { email = item.Email }) |
+                @Html.ActionLink("Supprimer", "Delete", new { email = item.Email })
+            </td>
+        </tr>
+    }
+
+</table>

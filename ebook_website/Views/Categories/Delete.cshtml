@@ -1,0 +1,44 @@
+﻿@model ebook_website.Models.Categorie
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;">Supprimer Catégorie</h2>
+
+<h5>Êtes-vous sûr de vouloir annuler cette Catégorie? </h5>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Nom_Categorie)*@
+            Nom Categorie
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Categorie)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Id_Image)*@
+            Image
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Id_Image)*@
+            <img src="@Url.Content(Session["imgPath"].ToString())" width="80" height="80" />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Annuler" class="btn btn-default" /> |
+            @Html.ActionLink("Retour à la liste", "Index")
+        </div>
+    }
+</div>

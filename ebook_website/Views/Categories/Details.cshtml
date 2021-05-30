@@ -1,0 +1,36 @@
+﻿@model ebook_website.Models.Categorie
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;">Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nom Categorie :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Categorie)
+        </dd>
+        <br />
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Id_Image)*@
+            Image :
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Id_Image)*@
+            <img src="@Url.Content(Session["imgPath"].ToString())" width="150" height="150" />
+        </dd>
+        <hr />
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.ID_Categorie }) |
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>

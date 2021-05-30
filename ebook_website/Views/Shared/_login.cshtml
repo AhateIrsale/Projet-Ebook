@@ -1,0 +1,10 @@
+﻿
+
+@if (User.Identity.IsAuthenticated)
+{
+    <li style="color:white;">@User.Identity.Name</li>
+}
+else
+{
+    <li>@Html.ActionLink("Login", "Login", "Login")</li>
+}

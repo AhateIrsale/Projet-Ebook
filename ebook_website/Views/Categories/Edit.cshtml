@@ -1,0 +1,51 @@
+﻿@model ebook_website.Models.Categorie
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;">Modifier Catégorie</h2>
+
+@using (Html.BeginForm("Edit", "Categories", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID_Categorie)
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Nom_Categorie, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2" style="font-weight:bold;"> Nom Categorie </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nom_Categorie, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nom_Categorie, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Id_Image  , htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2" style="font-weight:bold;"> Image </label>
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Id_Image, new { htmlAttributes = new { @class = "form-control" } })*@
+                <img src="@Url.Content(Session["imgPath"].ToString())" width="80" height="80" />
+                <div>
+                    <input type="file" name="upload" />
+                </div>
+                @Html.ValidationMessageFor(model => model.Id_Image, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Enregistrer" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Retour à la list", "Index")
+</div>

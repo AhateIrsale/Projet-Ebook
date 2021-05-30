@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="espace_EBOOKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Nom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Categorie">
+    <Key>
+      <PropertyRef Name="ID_Categorie" />
+    </Key>
+    <Property Name="ID_Categorie" Type="Int32" Nullable="false" />
+    <Property Name="Nom_Categorie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Id_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Livre" Relationship="Self.FK__Livre__ID_Catego__3C69FB99" FromRole="Categorie" ToRole="Livre" />
+  </EntityType>
+  <EntityType Name="Livre">
+    <Key>
+      <PropertyRef Name="ID_Livre" />
+    </Key>
+    <Property Name="ID_Livre" Type="Int32" Nullable="false" />
+    <Property Name="Titre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Auteur" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date_Publication" Type="DateTime" Precision="3" />
+    <Property Name="Date_Edition" Type="DateTime" Precision="3" />
+    <Property Name="ID_Categorie" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PDF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Categorie" Relationship="Self.FK__Livre__ID_Catego__3C69FB99" FromRole="Livre" ToRole="Categorie" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Nom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Prenom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__Livre__ID_Catego__3C69FB99">
+    <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1" />
+    <End Role="Livre" Type="Self.Livre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorie">
+        <PropertyRef Name="ID_Categorie" />
+      </Principal>
+      <Dependent Role="Livre">
+        <PropertyRef Name="ID_Categorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ebookEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="Categorie" EntityType="Self.Categorie" />
+    <EntitySet Name="Livre" EntityType="Self.Livre" />
+    <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" />
+    <AssociationSet Name="FK__Livre__ID_Catego__3C69FB99" Association="Self.FK__Livre__ID_Catego__3C69FB99">
+      <End Role="Categorie" EntitySet="Categorie" />
+      <End Role="Livre" EntitySet="Livre" />
+    </AssociationSet>
+    <EntitySet Name="conctact" EntityType="espace_EBOOKModel.conctact" />
+  </EntityContainer>
+  <EntityType Name="conctact">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

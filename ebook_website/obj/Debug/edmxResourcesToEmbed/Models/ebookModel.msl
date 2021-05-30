@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="espace_EBOOKModelStoreContainer" CdmEntityContainer="ebookEntities">
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="espace_EBOOKModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorie">
+      <EntityTypeMapping TypeName="espace_EBOOKModel.Categorie">
+        <MappingFragment StoreEntitySet="Categorie">
+          <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
+          <ScalarProperty Name="Nom_Categorie" ColumnName="Nom_Categorie" />
+          <ScalarProperty Name="Id_Image" ColumnName="Id_Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Livre">
+      <EntityTypeMapping TypeName="espace_EBOOKModel.Livre">
+        <MappingFragment StoreEntitySet="Livre">
+          <ScalarProperty Name="ID_Livre" ColumnName="ID_Livre" />
+          <ScalarProperty Name="Titre" ColumnName="Titre" />
+          <ScalarProperty Name="Auteur" ColumnName="Auteur" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date_Publication" ColumnName="Date_Publication" />
+          <ScalarProperty Name="Date_Edition" ColumnName="Date_Edition" />
+          <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="PDF" ColumnName="PDF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Utilisateur">
+      <EntityTypeMapping TypeName="espace_EBOOKModel.Utilisateur">
+        <MappingFragment StoreEntitySet="Utilisateur">
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="conctact">
+      <EntityTypeMapping TypeName="espace_EBOOKModel.conctact">
+        <MappingFragment StoreEntitySet="conctact">
+          <ScalarProperty Name="contenu" ColumnName="contenu" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

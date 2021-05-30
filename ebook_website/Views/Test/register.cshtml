@@ -1,0 +1,82 @@
+﻿@model ebook_website.Models.Utilisateur
+
+@{
+    ViewBag.Title = "register";
+    Layout = "~/Views/Shared/_MyDefaultPage.cshtml";
+}
+<style>
+    .form-control {
+        width: 300px;
+    }
+
+    .mylog {
+        width: 480px;
+        box-shadow: 2px 2px 5px 2px gray;
+        border-radius: 7px;
+        text-align: center;
+    }
+
+    .mylab {
+        margin-bottom: 25px;
+    }
+
+    .myinp {
+        margin-bottom: 7px;
+        margin-left: -25px;
+        border-radius: 5px;
+        height: 40px;
+        width: 250px;
+    }
+</style>
+<br />
+<br />
+<div class="mylog container ">
+    @using (Html.BeginForm("register", "Test", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="container">
+            <br />
+            <h2>Créer mon compte</h2>
+            <hr />
+            <b>@Html.ValidationSummary(true, "", new { @class = "text-danger" })</b>
+            <b> @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })</b>
+            <b> @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })</b>
+            <b>@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })</b>
+            <b>@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })</b>
+            <b>@Html.ValidationMessageFor(model => model.confirmePass, "", new { @class = "text-danger" })</b>
+
+
+
+
+
+            <br />
+            <div class="labels" style="float:left">
+                <label class="mylab" for="your_name">Nom : </label><br />
+                <label class="mylab" for="your_name">Prénom : </label><br />
+                <label class="mylab" for="your_pass"> Email :</label><br />
+                <label class="mylab" for="your_pass"> Mot de passe :</label><br />
+                <label class="mylab" for="your_pass"> Re-Mot de passe :</label><br />
+            </div>
+            <div class="inputs">
+                <input class="myinp" type="text" name="Nom" id="your_name" placeholder="votre nom" required /><br />
+                <input class="myinp" type="text" name="Prenom" id="your_name" placeholder="votre prénom" required /><br />
+                <input class="myinp" type="text" name="Email" id="your_name" placeholder="votre adresse mail" required /><br />
+                <input class="myinp" type="password" name="Password" id="your_pass" placeholder="saisir un mot de passe" required /><br />
+                <input class="myinp" type="password" name="confirmePass" id="your_pass" placeholder="Re-saisir votre mot de passe" required /><br />
+            </div>
+            <br />
+            <div class="form-group form-button" style="margin-left:20px;">
+                <input style="background-color: #ffd700;font-weight: bold; color:black;border-radius:3px; width:120px;" type="submit" name="signin" id="signin" class="form-submit" value="s'inscrire" /> <b> @Html.ActionLink("  Déja un compte ?", "login")</b>
+            </div>
+            <br />
+        </div>
+    }
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

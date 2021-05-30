@@ -1,0 +1,43 @@
+﻿@model  List<ebook_website.Models.Categorie>
+
+@{
+    ViewBag.Title = "afterLogin";
+    Layout = "~/Views/Shared/_MyDefaultPage.cshtml";
+}
+
+<br />
+<br />
+
+<fieldset style=" box-shadow: 2px 2px 5px 2px gray;border-radius:7px; padding: 40px 50px;">
+    <legend style="font-size:30px;margin-top:-30px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; float:left">Toutes les catégories : </legend>
+    <nav class="navbar navbar-light" style="margin-left:-20px; ">
+        <div class="container-fluid">
+            <form class="d-flex">
+                <input class="form-control me-2" name="SearchName" type="search" placeholder="Exemple (Programmation, ... )" aria-label="Search" style="border-color: black;width:250px">
+                <button class="btn"  name="SearchName" style="background-color:gold ; color:black;border:1px solid black" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="row row-cols-1 row-cols-md-3 g-4 col-md-10 m-auto" style="">
+        @foreach (var u in Model)
+        {
+            <div class="col" style="">
+
+                <div class="card" style="box-shadow:2px 2px 6px gray">
+                    <h5 align="center" class="card-title" style="font-weight:600; margin:10px 20px">@u.Nom_Categorie</h5>
+                    <img src="@u.Id_Image" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        @*<a  href="#" class="btn btn-secondary " data-bs-toggle="tooltip" data-bs-placement="right" title="Afficher les livres">Afficher les livres</a>*@
+                        @Html.ActionLink("Afficher les livres", "ShowBooks",new{id = u.ID_Categorie , nom=u.Nom_Categorie }, new { @class= "btn btn-secondary" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</fieldset>
+
+
+<br />
+
+
+

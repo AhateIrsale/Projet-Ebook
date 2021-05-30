@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ebook_website.Models.Livre>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;">Liste des livres</h2>
+<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+    <div class="input-group">
+        @using (Html.BeginForm("Index", "Livres", FormMethod.Get))
+        {
+            <input class="form-control" type="text" name="SearchName" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+            <div class="input-group-append">
+                <button class="btn btn-primary" name="SearchName" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        }
+
+    </div>
+</form>
+<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+    <div class="input-group">
+        @using (Html.BeginForm("Index", "Livres", FormMethod.Get))
+        {
+            <input class="form-control" type="date" name="Searchdate" placeholder="Rechercher en date..." aria-label="Search" aria-describedby="basic-addon2" />
+            <div class="input-group-append">
+                <button class="btn btn-primary" name="Searchdate" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        }
+
+    </div>
+</form>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Ajouter nouveau Livre", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Auteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Publication)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Edition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PDF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categorie.Nom_Categorie)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Auteur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Publication)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Edition)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Image)*@
+                <img src="@Url.Content(item.Image)" width="80" height="80" />
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.PDF)*@
+                @*<a><embed src="@Url.Content(item.Image)" />click here </a>*@
+                <p>@Url.Content(item.PDF)</p>
+
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categorie.Nom_Categorie)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.ID_Livre }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Livre }) |
+                @Html.ActionLink("Annuler", "Delete", new { id = item.ID_Livre })
+            </td>
+        </tr>
+    }
+
+</table>

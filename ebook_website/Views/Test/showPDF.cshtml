@@ -1,0 +1,40 @@
+﻿@model ebook_website.Models.Livre
+
+@{
+    ViewBag.Title = "showPDF";
+    Layout = "~/Views/Shared/_MyDefaultPage.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <h3 align="center" style="text-shadow: 2px 3px gold ;font-weight:bold">Bonne lecture.</h3>
+    <br />
+    @if (Convert.ToInt32(Session["id"]) == 1)
+    {
+        <div class="container">
+            <embed class="w-100 d-flex justify-content-center" style="box-shadow:2px 5px 7px gray; border-radius:5px" src="~/pdf/premier_langage_C.pdf" height="600" />
+        </div>
+    }
+    else if (Convert.ToInt32(Session["id"]) == 2)
+    {
+        <div class="container">
+            <embed class="w-100 d-flex justify-content-center" style="box-shadow:2px 5px 7px gray; border-radius:5px" src="~/pdf/python.pdf" height="600" />
+        </div>
+    }
+    else if (Convert.ToInt32(Session["id"]) == 3)
+    {
+        <div class="container">
+            <embed class="w-100 d-flex justify-content-center" style="box-shadow:2px 5px 7px gray; border-radius:5px" src="~/pdf/5385e15f71051.pdf" height="600" />
+        </div>
+    }
+    else if (Convert.ToInt32(Session["id"]) == 4)
+    {
+<div class="container">
+    <embed class="w-100 d-flex justify-content-center" style="box-shadow:2px 5px 7px gray; border-radius:5px" src="~/pdf/The-Invisible-Man (1).pdf" height="600" />
+</div>
+    }
+</div>
+<br />
+<br />
+
+

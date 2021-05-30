@@ -1,0 +1,83 @@
+﻿@model ebook_website.Models.Utilisateur
+
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_MyDefaultPage.cshtml";
+}
+<style>
+    .form-control {
+        width: 300px;
+    }
+
+    .mylog {
+        width: 460px;
+        box-shadow: -2px 2px 5px gray;
+        border-radius: 7px;
+        text-align: center;
+    }
+
+    .control-label {
+        text-align: center;
+        width: 200px;
+        vertical-align: middle;
+    }
+
+    .form {
+        margin-left: 7px;
+    }
+</style>
+<br />
+<br />
+<br />
+<br />
+<div class="mylog container ">
+
+    @if(Session["ins"]!=null)
+    {<br />
+        <h5 style="background-color:#A7EBCB;border-radius:6px; color:green; padding: 10px 10px">@Session["ins"]</h5>
+    }
+
+    @using (Html.BeginForm("login", "test", FormMethod.Post, new { @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="container">
+            <br />
+            <h2>Authentifiation</h2>
+            <hr />
+            <b>@Html.ValidationSummary(true, "", new { @class = "text-danger t" })</b>
+            <br />
+            <div class="form-group">
+                <label for="your_name">Adresse mail : </label>
+                <input style="border-radius: 5px; margin-left:35px; height:40px ; width:250px;" type="email" name="email" id="your_name" placeholder="votre adresse mail" required />
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="your_pass"> Mot de passe :</label>
+                <input style="border-radius: 5px; margin-left:30px; height:40px ; width:250px;" type="password" name="Password" id="your_pass" placeholder="Mot de passe" required />
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                <label style="margin-right:35px;" for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label> <b> @Html.ActionLink("  Besoin d'un compte ?", "register")</b>
+            </div>
+            <div class="form-group form-button">
+                 <input style="background-color: #ffd700;font-weight: bold; color:black;border-radius:3px; width:120px;" type="submit" name="email" id="signin" class="form-submit" value="S'identifier" />
+            </div>
+            <br />
+        </div>
+
+
+    }
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

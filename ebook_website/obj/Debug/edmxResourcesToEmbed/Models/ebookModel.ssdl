@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="espace_EBOOKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Nom" Type="nvarchar" MaxLength="100" />
+    <Property Name="Prenom" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Categorie">
+    <Key>
+      <PropertyRef Name="ID_Categorie" />
+    </Key>
+    <Property Name="ID_Categorie" Type="int" Nullable="false" />
+    <Property Name="Nom_Categorie" Type="nvarchar" MaxLength="100" />
+    <Property Name="Id_Image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="conctact">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="Tel" Type="varchar" MaxLength="50" />
+    <Property Name="contenu" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Livre">
+    <Key>
+      <PropertyRef Name="ID_Livre" />
+    </Key>
+    <Property Name="ID_Livre" Type="int" Nullable="false" />
+    <Property Name="Titre" Type="nvarchar" MaxLength="100" />
+    <Property Name="Auteur" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Date_Publication" Type="datetime" />
+    <Property Name="Date_Edition" Type="datetime" />
+    <Property Name="ID_Categorie" Type="int" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="PDF" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Nom" Type="nvarchar" MaxLength="200" />
+    <Property Name="Prenom" Type="nvarchar" MaxLength="200" />
+    <Property Name="Email" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Livre__ID_Catego__3C69FB99">
+    <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1" />
+    <End Role="Livre" Type="Self.Livre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorie">
+        <PropertyRef Name="ID_Categorie" />
+      </Principal>
+      <Dependent Role="Livre">
+        <PropertyRef Name="ID_Categorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="espace_EBOOKModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="conctact" EntityType="Self.conctact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Livre" EntityType="Self.Livre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Livre__ID_Catego__3C69FB99" Association="Self.FK__Livre__ID_Catego__3C69FB99">
+      <End Role="Categorie" EntitySet="Categorie" />
+      <End Role="Livre" EntitySet="Livre" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

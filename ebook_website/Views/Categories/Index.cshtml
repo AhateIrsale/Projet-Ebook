@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ebook_website.Models.Categorie>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;">Liste Catégories</h2>
+<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+    <div class="input-group">
+        @using (Html.BeginForm("Index", "Categories", FormMethod.Get))
+        {
+            <input class="form-control" type="text" name="SearchName" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+            <div class="input-group-append">
+                <button class="btn btn-primary" name="SearchName" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        }
+
+    </div>
+</form>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Ajouter nouvelle catégorie", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nom Categorie :
+        </th>
+        <th>
+            Image :
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom_Categorie)
+            </td>
+            <td>
+                <img src="@Url.Content(item.Id_Image)" width="80" height="80" />
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.ID_Categorie }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Categorie }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.ID_Categorie })
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,94 @@
+﻿@model ebook_website.Models.Livre
+
+@{
+    ViewBag.Title = "pageLecture";
+    Layout = "~/Views/Shared/_MyDefaultPage.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<style>
+    #btnRetour {
+        border: 1px solid gray;
+    }
+
+    #btnLire {
+        background-color: gold;
+        border-radius: 5px;
+        color: black;
+        border: 1px solid black;
+        box-shadow: 1px 1px 3px gray;
+        width: 100px;
+    }
+
+
+    #mylog {
+        box-shadow: -1px 3px 7px gray;
+    }
+
+    #exampleModal {
+        width: 600px;
+        height: 400px;
+    }
+    #btnRetour {
+        background-color:#d4d4d4;
+        margin-top: -20px;
+        margin-bottom: 10px;
+        float: initial;
+        border: 1px solid gray;
+    }
+</style>
+
+@Html.ActionLink("< Voir les catégories", "afterLogin", "Test", new { @class = "btn", @id = "btnRetour" })
+<div class="container" id="mylog">
+    <br />
+    <h2 align="center" style="font-weight:bold; text-shadow:2px 3px gold">@Html.DisplayFor(model => model.Titre)</h2>
+    <hr />
+    <img src="@Html.DisplayFor(model=> model.Image)" class="img-thumbnail" style="float:right ;width:280px ;height:300px">
+    <br />
+    <div>
+        <div class="form-group">
+            <b>@Html.DisplayNameFor(model => model.Auteur)  : </b>
+            @Html.DisplayFor(model => model.Auteur)
+        </div>
+        <div class="form-group">
+            <b>Date de publication  : </b>
+            @Html.DisplayFor(model => model.Date_Publication)
+        </div>
+
+        <div class="form-group">
+            <b>Date d'édition  : </b>
+            @Html.DisplayFor(model => model.Date_Edition)
+        </div>
+
+
+        <div class="form-group">
+            <b>@Html.DisplayNameFor(model => model.Categorie.Nom_Categorie)  : </b>
+            @Html.DisplayFor(model => model.Categorie.Nom_Categorie)
+        </div>
+
+        <b>@Html.DisplayNameFor(model => model.Description) : </b>
+        <p>
+            @Html.DisplayFor(model => model.Description)
+        </p>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        <p>
+            @Html.ActionLink("Lire", "showPDF", "test", new { id = @Html.DisplayFor(model => model.ID_Livre) }, new { @class = "btn ", @id ="btnLire" })
+        </p>
+    </div>
+    <br />
+</div>
+
+
+
+<br />
+<br />
+<br />
+<br />

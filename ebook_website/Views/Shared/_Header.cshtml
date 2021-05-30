@@ -1,0 +1,35 @@
+﻿<style>
+    #ebook{
+        text-decoration:none;
+    }
+</style>
+<nav id="mynav" class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <div> @Html.ActionLink("E-Book", "home", "Test", new { @id = "ebook" })</div>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fa fa-bars ml-1"></i>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ml-auto" style="float:right">
+                @if (User.Identity.IsAuthenticated && Session["email"] != null)
+                {
+                    <li class="nav-item "> @Html.ActionLink("Nos livres", "afterLogin", "Test", new { @class = "itemLink nav-link " })</li>
+                    <li class="nav-item "> @Html.ActionLink("contactez-nous", "contact", "Test", new { @class = "itemLink nav-link " })</li>
+                    <li class="nav-item "> @Html.ActionLink("Profile", "profilee", "Test", new { @class = "itemLink nav-link " })</li>
+                    <li class="nav-item "> @Html.ActionLink("Se déconnecter", "logout", "Test", new { @class = "itemLink nav-link " })</li>
+                }
+                else
+                {
+
+                    <li class="nav-item"> <a class=" itemLink nav-link" href="~/test/login"><i class="far fa-user" style="color:gold; font-weight:bold"></i> Se Connecter</a></li>
+                    <li class="nav-item"> <a class=" itemLink nav-link" href="~/test/register"><i class="fas fa-user-plus" style="color: gold; font-weight: bold"></i> Créer mon compte</a></li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<br />
+<br />
+
